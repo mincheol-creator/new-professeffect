@@ -97,10 +97,10 @@
       <v-col cols="3" sm="3"></v-col>
       <v-col cols="9" sm="4">
         <p class="font-weight-black" id="formText">알람 설정</p>
-        <v-switch class="mx-2" value input-value="true" v-model="stateAlarm"></v-switch>
+        <v-switch class="mx-2" value input-value="false" v-model="stateAlarm"></v-switch>
       </v-col>
       <v-col cols="12" sm="5">
-        <v-text-field label="알람 시간" v-model="stateAlarmTime" type="time" suffix="GMT+9"></v-text-field>
+        <v-text-field label="알람 시간" v-model="stateAlarmTime" type="time"></v-text-field>
       </v-col>
     </v-row>
     <v-row justify="center">
@@ -149,6 +149,11 @@ export default {
     },
     //작성완료 페이지로 이동
     toWriteForm() {
+      if (!this.getSelectList.code || !this.getTitle) {
+        alert("양식을 완성해주세요");
+        return;
+      }
+      this.$store.commit("setFormatValue");
       this.$router.push("/complete_goal");
     }
   },
@@ -160,7 +165,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getItems", "getOptions"]),
+    ...mapGetters(["getItems", "getOptions", "getSelectList", "getTitle"]),
     stateTitle: {
       get() {
         return this.$store.state.Goal.title;
