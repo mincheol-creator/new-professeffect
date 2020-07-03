@@ -8,8 +8,7 @@
         책임을 느끼고 약속을 더 잘 지키게 되는 효과입니다. 새해에 다짐한 목표,
         항상 생각하던 자기계발 잘 지키시지 않으신가요? 지금 여러분의 목표를
         설정해 주세요. 저희가 떠벌려드리겠습니다.
-        <div id="firebaseui-auth-container"></div>
-        <!-- <button @click="GoogleLogin" class="google-button"></button> -->
+        <div id="firebaseui-auth-container" class="d-flex flex-direction:row"></div>
       </v-col>
       <v-col cols="6">
         <img src="../img/HomeImage.jpg" width="300" height="300" alt />
@@ -24,7 +23,7 @@
 <script>
 var firebase = require("firebase");
 var firebaseui = require("firebaseui");
-
+require("firebaseui/dist/firebaseui.css");
 export default {
   name: "HomeBody",
   methods: {
@@ -34,25 +33,18 @@ export default {
   },
   mounted: function() {
     var uiConfig = {
-      signInSuccessUrl: "/",
-
       signInOptions: [
-        {
-          provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          scopes: ["https://www.googleapis.com/auth/contacts.readonly"],
-          customParameters: {
-            // Forces account selection even when one account
-            // is available.
-            prompt: "select_account"
-          }
-        }
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID
       ],
-
-      tosUrl: "/"
-
-      // privacyPolicyUrl: function() {
-      //   window.location.assign("/");
-      // }
+      credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
+      callbacks: {
+        signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+          console.log(redirectUrl);
+          console.log(authResult);
+          //location.href = "/write_goal";
+        }
+      }
     };
 
     var ui = new firebaseui.auth.AuthUI(firebase.auth());

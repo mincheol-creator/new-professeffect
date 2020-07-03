@@ -2,7 +2,6 @@
   <v-app>
     <v-app-bar app color="red accent-1" dark>
       <div class="d-flex align-center"></div>
-      <v-spacer></v-spacer>
     </v-app-bar>
 
     <v-main>
@@ -36,3 +35,8 @@ export default {
   })
 };
 </script>
+<style>
+/* .firebaseui-id-idp-button {
+  width: 10rem;
+} */
+</style>
