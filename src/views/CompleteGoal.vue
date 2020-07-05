@@ -15,7 +15,7 @@
       <v-card-title v-if="isLoggedIn">{{getUserName}}님의 떠벌림 : {{getTitle}}</v-card-title>
       <v-card-title v-else>떠벌림 : {{getTitle}}</v-card-title>
       <v-card-text class="text--primary">
-        <div>기간: {{getDate}} 까지 주 {{getRow}}회</div>
+        <div>기간: {{getDate}} 까지 주 {{getRows}}회</div>
       </v-card-text>
       <v-card-text v-if="getAlarm">
         <div>알람시간: {{getAlarmTime}}</div>

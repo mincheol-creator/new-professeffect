@@ -1,14 +1,17 @@
 <template>
   <v-app>
     <v-app-bar app color="red accent-1" dark>
-      <img src="./img/logo.svg" width="50px" />
+      <img @click="goHome" src="./img/logo.svg" width="50px" />
+      <div @click="goHome">
+        <h2>떠벌림</h2>
+      </div>
       <v-spacer></v-spacer>
       <div v-if="isLoggedIn" class="d-flex align-center">{{getUserName}}님 환영합니다.</div>
       <div v-else class="d-flex align-center"></div>
     </v-app-bar>
 
     <v-main>
-      <router-link to="/">
+      <!-- <router-link to="/">
         <v-btn>Home</v-btn>|
       </router-link>
       <router-link to="/write_goal">
@@ -19,7 +22,7 @@
       </router-link>
       <router-link to="/board_list">
         <v-btn>목표 게시판</v-btn>
-      </router-link>
+      </router-link>-->
       <router-view />
     </v-main>
   </v-app>
@@ -38,7 +41,12 @@ export default {
   },
   data: () => ({
     //
-  })
+  }),
+  methods: {
+    goHome() {
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 <style>

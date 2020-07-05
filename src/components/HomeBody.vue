@@ -1,6 +1,6 @@
 <template>
   <v-container style="width:75%">
-    <v-row no-gutters>
+    <v-row no-gutters class="pt-10">
       <v-col cols="12" sm="6">
         안녕하세요?
         <br />
@@ -22,13 +22,14 @@
         <img src="../img/HomeImage.jpg" width="300" height="300" alt />
       </v-col>
     </v-row>
+
     <br />
     <div>
-      <v-btn id="goButton" @click="toWriteForm" style="width:75%">시작하기</v-btn>
+      <v-btn id="goButton" @click="toWriteForm">시작하기</v-btn>
     </div>
     <br />
     <div v-if="isLoggedIn">
-      <v-btn id="logoutButton" @click="logout" style="width:75%">logout</v-btn>
+      <v-btn id="logoutButton" @click="logout">logout</v-btn>
     </div>
     <div v-else id="firebaseui-auth-container" class="d-flex flex-direction:row"></div>
   </v-container>
@@ -81,13 +82,15 @@ export default {
 #goButton {
   background-color: rgba(254, 135, 123);
   color: white;
-  width: 300px;
+  width: 100%;
+  max-width: 760px;
   height: 30px;
 }
 #logoutButton {
   background-color: rgb(102, 101, 101);
   color: white;
-  width: 300px;
+  width: 100%;
+  max-width: 760px;
   height: 30px;
 }
 </style>
