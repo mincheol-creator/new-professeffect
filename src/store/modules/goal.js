@@ -109,6 +109,9 @@ const mutations = {
   setValue(state, data) {
     state.value = data;
   },
+  resetFormatValue(state) {
+    state.formatValue = "";
+  },
   //value Form 수정
   setFormatValue(state) {
     for (let i = 0; i < state.value.length; i++) {

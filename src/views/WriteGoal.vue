@@ -204,6 +204,9 @@ export default {
       this.$store.commit("setDate", format);
       return format;
     }
+  },
+  created: function() {
+    this.$store.commit("resetFormatValue");
   }
 };
 </script>
