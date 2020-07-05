@@ -8,7 +8,10 @@
         책임을 느끼고 약속을 더 잘 지키게 되는 효과입니다. 새해에 다짐한 목표,
         항상 생각하던 자기계발 잘 지키시지 않으신가요? 지금 여러분의 목표를
         설정해 주세요. 저희가 떠벌려드리겠습니다.
-        <div id="firebaseui-auth-container" class="d-flex flex-direction:row"></div>
+        <div v-if="isLoggedIn">
+          <a @click="logout">Logout</a>
+        </div>
+        <div v-else id="firebaseui-auth-container" class="d-flex flex-direction:row"></div>
       </v-col>
       <v-col cols="6">
         <img src="../img/HomeImage.jpg" width="300" height="300" alt />
@@ -24,12 +27,15 @@
 var firebase = require("firebase");
 var firebaseui = require("firebaseui");
 require("firebaseui/dist/firebaseui.css");
+import cookies from "vue-cookies";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "HomeBody",
   methods: {
     toWriteForm() {
       this.$router.push("/write_goal");
-    }
+    },
+    ...mapActions(["logout"])
   },
   mounted: function() {
     var uiConfig = {
@@ -41,7 +47,11 @@ export default {
       callbacks: {
         signInSuccessWithAuthResult: (authResult, redirectUrl) => {
           console.log(redirectUrl);
-          console.log(authResult);
+          console.log(authResult.user.displayName);
+          console.log(authResult.credential.accessToken);
+          //this.token = authResult.credential.accessToken;
+          this.$store.commit("setToken", authResult.credential.accessToken);
+          cookies.set("token", authResult.credential.accessToken);
           //location.href = "/write_goal";
         }
       }
@@ -49,7 +59,8 @@ export default {
 
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start("#firebaseui-auth-container", uiConfig);
-  }
+  },
+  computed: mapGetters(["isLoggedIn"])
 };
 </script>
 
