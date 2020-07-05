@@ -128,8 +128,8 @@ export default {
           description: `#목표 #달성${this.getFormatValue}`,
           imageUrl: `https://firebasestorage.googleapis.com/v0/b/t4ir-blockchain-testprime.appspot.com/o/${this.imageId}.jpg?alt=media`,
           link: {
-            mobileWebUrl: "https://developers.kakao.com",
-            webUrl: "https://developers.kakao.com"
+            mobileWebUrl: "https://pensive-meitner-cd16f7.netlify.app/",
+            webUrl: "https://pensive-meitner-cd16f7.netlify.app/"
           }
         },
         social: {
