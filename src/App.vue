@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app color="red accent-1" dark>
-      <div class="d-flex align-center"></div>
+      <img src="./img/logo.svg" width="50px" />
+      <v-spacer></v-spacer>
+      <div v-if="isLoggedIn" class="d-flex align-center">{{getUserName}}님 환영합니다.</div>
+      <div v-else class="d-flex align-center"></div>
     </v-app-bar>
 
     <v-main>
@@ -23,13 +26,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "App",
   created() {
     window.Kakao.init(process.env.VUE_APP_KAKAO_ID);
   },
   components: {},
-
+  computed: {
+    ...mapGetters(["getUserName", "isLoggedIn"])
+  },
   data: () => ({
     //
   })

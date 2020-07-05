@@ -12,7 +12,8 @@
           </v-row>
         </v-img>
       </v-navigation-drawer>
-      <v-card-title>떠벌림 목표: {{getTitle}}</v-card-title>
+      <v-card-title v-if="isLoggedIn">{{getUserName}}님의 떠벌림 : {{getTitle}}</v-card-title>
+      <v-card-title v-else>떠벌림 : {{getTitle}}</v-card-title>
       <v-card-text class="text--primary">
         <div>기간: {{getDate}} 까지 주 {{getRow}}회</div>
       </v-card-text>
@@ -147,7 +148,9 @@ export default {
       "getRows",
       "getAlarm",
       "getAlarmTime",
-      "getFormatValue"
+      "getFormatValue",
+      "isLoggedIn",
+      "getUserName"
     ])
   }
   // created: function() {
